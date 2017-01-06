@@ -1,0 +1,26 @@
+{
+  "name": "centagon-build-core-js",
+  "description": "Commonly javascript utilities used by Centagon Build Core package",
+  "main": [],
+  "dependencies": {
+    "centagon-primer": "0.1.*"
+  },
+  "keywords": [
+    "centagon",
+    "build",
+    "build-core"
+  ],
+  "authors": [
+    "Jelle Spekken <jelle@centagon.com>",
+    "Joeri Kassenaar <joeri@centagon.com>",
+    "Rene Heijnemans <rene@centagon.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "src/components",
+    "npm-debug.log"
+  ],
+  "moduleType": [],
+  "homepage": "https://github.com/centagon/build-core-js"
+}
