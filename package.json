@@ -1,6 +1,6 @@
 {
   "name": "centagon-build-core-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license" : "MIT",
   "scripts": {
     "prod": "gulp --production",
@@ -22,5 +22,8 @@
     "laravel-elixir-webpack-official": "^1.0.6",
     "lodash": "^4.15.0"
   },
-  "main" : "src/js/build-core.js"
+  "main" : "src/js/build-core.js",
+  "browserify": {
+    "transform": [["babelify", { "presets": ["es2015"] }]]
+  }
 }
