@@ -112,6 +112,8 @@ class Sidebar {
                 });
 
         });
+        
+        return P;
 
     }
     
