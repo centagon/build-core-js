@@ -26,20 +26,25 @@ class Sidebar {
         return this;
     }
 
-    load(sidebar, url) {
+    load(sidebar, url, params = null) {
+        const data = params;
+        
         sidebar.addClass('sidebar--open');
 
-        return $.ajax(url)
-            .done(response => sidebar.find('.content').html(response))
-            .fail(response => {
+        return $.ajax({
+                    url: url,
+                    data: data
+                })
+                .done(response => sidebar.find('.content').html(response))
+                .fail(response => {
 
-                // It's possible that laravel forgot the site we were logged into.
-                // So when the 'springboard' route returns a 401 unauthorized
-                // status code, then we'll redirect to the site selector.
-                if (response.status === 401) {
-                    window.location.href = config.base_url;
-                }
-            });
+                    // It's possible that laravel forgot the site we were logged into.
+                    // So when the 'springboard' route returns a 401 unauthorized
+                    // status code, then we'll redirect to the site selector.
+                    if (response.status === 401) {
+                        window.location.href = config.base_url;
+                    }
+                });
     }
 
     close(sidebar) {
@@ -57,7 +62,7 @@ class Sidebar {
         
         var P = $.Deferred();
 
-        this.load( $sidebar, url).then( () => {
+        this.load( $sidebar, url, params).then( () => {
             $(sidebar)
                 .on('submit', 'form', (e) => {
                     e.preventDefault();
