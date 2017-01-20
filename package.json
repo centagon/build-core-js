@@ -1,7 +1,7 @@
 {
   "name": "centagon-build-core-js",
-  "version": "1.0.7",
-  "license" : "MIT",
+  "version": "1.0.8",
+  "license": "MIT",
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch"
@@ -12,6 +12,9 @@
     "Rene Heijnemans <rene@centagon.com>"
   ],
   "dependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
     "centagon-primer": "0.1.*"
   },
   "devDependencies": {
@@ -22,8 +25,17 @@
     "laravel-elixir-webpack-official": "^1.0.6",
     "lodash": "^4.15.0"
   },
-  "main" : "src/js/build-core.js",
+  "main": "src/js/build-core.js",
   "browserify": {
-    "transform": [["babelify", { "presets": ["es2015"] }]]
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
   }
 }

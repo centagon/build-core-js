@@ -1,3 +1,4 @@
 /node_modules
 /src/components
 npm-debug.log
+yarn.lock

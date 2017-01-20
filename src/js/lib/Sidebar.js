@@ -25,6 +25,10 @@ class Sidebar {
 
         return this;
     }
+    
+    trigger(event, params) {
+        $(document).trigger(`sidebar:${event}`, params);
+    }
 
     load(sidebar, url, params = null) {
         const data = params;
@@ -35,7 +39,12 @@ class Sidebar {
                     url: url,
                     data: data
                 })
-                .done(response => sidebar.find('.content').html(response))
+                .done(response => {
+                    sidebar.find('.content').html(response);
+            
+                    this.trigger('opened', sidebar);
+                    
+                })
                 .fail(response => {
 
                     // It's possible that laravel forgot the site we were logged into.
@@ -53,6 +62,8 @@ class Sidebar {
                 .off('submit','form')
                 .removeClass('sidebar--open')
                 .find('.content').html('');
+        
+        this.trigger('closed', sidebar);
     }
     
     resource(sidebar, url, params) {
