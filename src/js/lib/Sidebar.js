@@ -72,8 +72,17 @@ class Sidebar {
         this.close( $sidebar );
         
         var P = $.Deferred();
-
+        
         this.load( $sidebar, url, params).then( () => {
+            
+            // Actors (buttons) will not be serialized ; so we make sure we do it ourselves
+            var $actors = $(sidebar).find('form input[type=submit], form button');
+            var currentActor = null;
+                    
+            $actors.on('click', (e) => {
+                currentActor = e.target;
+            });
+            
             $(sidebar)
                 .on('submit', 'form', (e) => {
                     e.preventDefault();
@@ -88,6 +97,15 @@ class Sidebar {
                     
                     const action = $form.attr('action');
                     var method = $form.attr('method');
+                    
+                    // Put the actor's value in the serialized array
+                    if (currentActor) {
+                        let name = $(currentActor).attr('name');
+                        
+                        if (name) {
+                            arr[currentActor.name] = $(currentActor).attr('value');
+                        }
+                    }
                     
                     _.each(obj, (o) => {
                         arr[o.name] = o.value;
